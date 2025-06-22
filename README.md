@@ -14,10 +14,14 @@ abricate --db vfdb ./spades/pm1151/contigs.fasta > abricate-Virulence/vfdb_pm115
 质粒检测plasmid
 abricate -db plasmidfinder ./spades/pm1151/contigs.fasta > abricate-Plasmid/plasmid_pm1151.txt
 核心基因组比对与构建系统发育树roary
+
 基于参考序列的比对与SNP鉴定snippy
 snippy --cpus 4 --o snippy/pm1151_pm1151 --ref reference.fasta --R1 data/pm1151_1.fq.gz --R2 data/pm1151_2.fq.gz
 泛基因组可视化
 使用工具：GView、Anvi'o、Roary-plots或Phandango
+功能分析
+COG或KEGG注释
+
 建立文件 mkdir
 rm -rf 删除目录和文件
 touch创建新文件
