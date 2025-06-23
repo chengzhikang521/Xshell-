@@ -9,6 +9,29 @@ quast.py -o quast/pm1151 spades/pm1151/contigs.fasta
 
 耐药基因Abricate
 abricate --db resfinder ./spades/pm1151/contigs.fasta > abricat/resfinder_pm1151.txt
+mkdir -p contigs
+ln -s /home/meta/meta/pm/spades/pm1151/contigs.fasta contigs/pm1151_contigs.fasta
+ln -s /home/meta/meta/pm/spades/pm1154/contigs.fasta contigs/pm1154_contigs.fasta
+ln -s /home/meta/meta/pm/spades/pm1161/contigs.fasta contigs/pm1161_contigs.fasta
+ln -s /home/meta/meta/pm/spades/pm2260/contigs.fasta contigs/pm2260_contigs.fasta
+ln -s /home/meta/meta/pm/spades/pm2439/contigs.fasta contigs/pm2439_contigs.fasta
+ln -s /home/meta/meta/pm/spades/pm2512/contigs.fasta contigs/pm2512_contigs.fasta
+ln -s /home/meta/meta/pm/spades/pm2523/contigs.fasta contigs/pm2523_contigs.fasta
+#!/bin/bash
+
+# Create output directory if it doesn't exist
+mkdir -p abricat
+
+# Loop through all pm*.fasta files in the contig directory
+for fasta in contig/pm*.fasta; do
+    # Extract the base name without directory and extension
+    sample=$(basename "$fasta" .fasta)
+    # Run abricate and output to abricat/resfinder_<sample>.txt
+    abricate --db resfinder "$fasta" --threads 24 > "abricat/resfinder_${sample}.txt"
+done
+
+
+abricate --summary *.txt > abricate_summary.txt
 毒力基因abricate-Virulence
 abricate --db vfdb ./spades/pm1151/contigs.fasta > abricate-Virulence/vfdb_pm1151.txt
 质粒检测plasmid
