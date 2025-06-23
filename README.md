@@ -18,6 +18,7 @@ ln -s /home/meta/meta/pm/spades/pm2439/contigs.fasta contigs/pm2439_contigs.fast
 ln -s /home/meta/meta/pm/spades/pm2512/contigs.fasta contigs/pm2512_contigs.fasta
 ln -s /home/meta/meta/pm/spades/pm2523/contigs.fasta contigs/pm2523_contigs.fasta
 #!/bin/bash
+abricate.sh
 
 # Create output directory if it doesn't exist
 mkdir -p abricat
@@ -30,7 +31,7 @@ for fasta in contig/pm*.fasta; do
     abricate --db resfinder "$fasta" --threads 24 > "abricat/resfinder_${sample}.txt"
 done
 
-
+bash abricat.sh
 abricate --summary *.txt > abricate_summary.txt
 毒力基因abricate-Virulence
 abricate --db vfdb ./spades/pm1151/contigs.fasta > abricate-Virulence/vfdb_pm1151.txt
